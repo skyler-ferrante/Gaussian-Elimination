@@ -18,9 +18,6 @@ int main(int argc, char** argv){
 		return 1;
 	}
 
-	MATRIX matrix;
-
-	read_lines(file, matrix); 
-
-	print_matrix(matrix);
+	Matrix m(file);
+	m.print();
 }

@@ -10,7 +10,7 @@ using std::endl;
 using std::vector;
 using std::string;
 
-void read_lines(std::ifstream& file, MATRIX &matrix){
+Matrix::Matrix( std::ifstream& file ){
 	string s;
 
 	// Go through lines
@@ -23,13 +23,13 @@ void read_lines(std::ifstream& file, MATRIX &matrix){
 		// Go through ints in line
 		while( ss >> n)
 			current_line.push_back(n);
-		
-		matrix.push_back( current_line );
+
+		m.push_back( current_line );
 	}
 }
 
-void print_matrix( MATRIX const &matrix){
-	for( auto r : matrix ){
+void Matrix::print(){
+	for( auto r : m ){
 		for( auto e : r ){
 			cout << e << " ";
 		}

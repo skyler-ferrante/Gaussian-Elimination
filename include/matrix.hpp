@@ -8,10 +8,21 @@ using std::vector;
 
 typedef vector<vector<int>> MATRIX;
 
-// Read lines
-void read_lines(std::ifstream& file, MATRIX &m);
+class Matrix{
+	public:
+		// No default constructor
+		Matrix() = delete;
 
-// Print matrix
-void print_matrix(MATRIX const &m); 
+		// Read from file
+		Matrix( std::ifstream& file);
+
+		// Already made MATRIX
+		Matrix( MATRIX &matrix );
+
+		void print();
+
+	private:
+		MATRIX m;
+};
 
 #endif
