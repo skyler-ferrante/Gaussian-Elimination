@@ -20,7 +20,7 @@ int main(int argc, char** argv){
 
 	MATRIX matrix;
 
-	read_line(file, matrix); 
+	read_lines(file, matrix); 
 
 	print_matrix(matrix);
 }

@@ -10,7 +10,7 @@ using std::endl;
 using std::vector;
 using std::string;
 
-void read_line(std::ifstream& file, MATRIX &matrix){
+void read_lines(std::ifstream& file, MATRIX &matrix){
 	string s;
 
 	// Go through lines

@@ -8,8 +8,8 @@ using std::vector;
 
 typedef vector<vector<int>> MATRIX;
 
-// Read one line from file
-void read_line(std::ifstream& file, MATRIX &m);
+// Read lines
+void read_lines(std::ifstream& file, MATRIX &m);
 
 // Print matrix
 void print_matrix(MATRIX const &m); 
