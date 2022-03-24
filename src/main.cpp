@@ -20,4 +20,8 @@ int main(int argc, char** argv){
 
 	Matrix m(file);
 	m.print();
+
+	cout << "Swapping rows 0 and 1" << endl;
+	m.swap_rows(0, 1);
+	m.print();
 }

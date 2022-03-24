@@ -19,6 +19,8 @@ class Matrix{
 		// Already made MATRIX
 		Matrix( MATRIX &matrix );
 
+		void swap_rows(int r1, int r2);
+
 		void print();
 
 	private:

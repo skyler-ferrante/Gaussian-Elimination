@@ -28,6 +28,10 @@ Matrix::Matrix( std::ifstream& file ){
 	}
 }
 
+void Matrix::swap_rows( int r1, int r2 ){
+	std::swap( m[r1], m[r2] );
+}
+
 void Matrix::print(){
 	for( auto r : m ){
 		for( auto e : r ){
