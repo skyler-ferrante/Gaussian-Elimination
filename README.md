@@ -5,6 +5,12 @@ Find RREF of Matrix through Gaussian Elimination.
 Compile with:
 
     make
+    
+Run with:
+
+    ./run_tests
+    
+    ./linear data/fourth
 
 Precision can be changed by changing type of ELEMENT in matrix.hpp, e.g.
 
