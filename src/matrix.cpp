@@ -64,6 +64,10 @@ int Matrix::width() const{
 }
 
 void Matrix::add_row_mult(int r1, int r2, ELEMENT mult){
+	if( mult == 0 ){
+		return;
+	}
+
 	row_index_assert(r1, *this);
 	row_index_assert(r2, *this);
 
@@ -74,9 +78,34 @@ void Matrix::add_row_mult(int r1, int r2, ELEMENT mult){
 
 void Matrix::mult_row(int r, ELEMENT mult){
 	row_index_assert(r, *this);
+	assert(mult != 0);
 
 	for(auto& e : m[r])
 		e *= mult;
+}
+
+void Matrix::gaussian_elimation(){
+	int p = 0;
+
+	for(int k = 0; k < width(); k++){
+		int i;
+		for(i=p; i < height(); i++){
+			if( m[i][k] != 0 ){
+				swap_rows(p, i);
+
+				ELEMENT a = 1/(m[p][k]);
+				mult_row(p, a);
+				for(int q = 0; q < height(); q++){
+					if( q == p ) continue;
+					ELEMENT aq = m[q][k];
+					add_row_mult(p, q, -aq);
+				}
+
+				p++;
+				if( p >= height()) return;
+			}
+		}
+	}
 }
 
 Matrix operator* (ELEMENT x, const Matrix m){
