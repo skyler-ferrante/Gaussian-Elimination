@@ -22,6 +22,6 @@ int main(int argc, char** argv){
 	m.print();
 	cout << endl;
 
-	m.gaussian_elimation();
+	m.gaussian_elimination();
 	m.print();
 }

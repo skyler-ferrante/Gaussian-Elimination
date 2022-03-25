@@ -35,7 +35,7 @@ class Matrix{
 		// Add r1*mult to r2
 		void add_row_mult(int r1, int r2, ELEMENT mult);
 
-		void gaussian_elimation();
+		void gaussian_elimination();
 
 		int height() const;
 		int width() const;

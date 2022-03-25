@@ -129,7 +129,7 @@ void test_gaussian(){
 	Matrix m(data);
 	print_matrix("BEFORE GAUSSIAN", m);
 
-	m.gaussian_elimation();
+	m.gaussian_elimination();
 	print_matrix("AFTER GAUSSIAN", m);
 	
 	MATRIX correct = {

@@ -88,7 +88,7 @@ void Matrix::mult_row(int r, ELEMENT mult){
 		e *= mult;
 }
 
-void Matrix::gaussian_elimation(){
+void Matrix::gaussian_elimination(){
 	int p = 0;
 
 	for(int k = 0; k < width(); k++){
