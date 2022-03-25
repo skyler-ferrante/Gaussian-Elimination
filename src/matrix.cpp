@@ -46,7 +46,19 @@ void Matrix::print(){
 	}
 }
 
-const ROW Matrix::get_row(long unsigned int r){
+const ROW& Matrix::get_row(long unsigned int r){
 	assert( r < m.size() && "Row index larger than amount of rows");
 	return m[r];
+}
+
+//const ROW& Matrix::operator[](int r){
+//	return get_row(r);
+//}
+
+long unsigned int Matrix::height(){
+	return m.size();
+}
+
+long unsigned int Matrix::width(){
+	return m[0].size();
 }

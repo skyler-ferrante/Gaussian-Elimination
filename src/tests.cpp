@@ -37,6 +37,17 @@ int main(){
 	Matrix m1(file);
 	Matrix m2(m1);
 
+	assert( m1.height() == m2.height());
+	assert( m1.width() == m2.width());
+
+	for(unsigned int i = 0; i < m1.height(); i++){
+		// Access rows through operator[]
+		assert( m1[i] == m2[i]);
+	}
+
+	// Access rows through get_row
+	assert( m1.get_row(0) != m1.get_row(1) && "Other tests rely on this unequal rows" );
+
 	print_matrices("READ", m1, m2);
 
 	m1.swap_rows(0, 1);
@@ -46,5 +57,4 @@ int main(){
 	assert( m1.get_row(2) == m2.get_row(2) );
 	
 	print_matrices("M1 SWAP 0 1", m1, m2);
-
 }

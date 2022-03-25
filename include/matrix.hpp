@@ -26,7 +26,12 @@ class Matrix{
 		Matrix( const Matrix &matrix);
 
 		void swap_rows(int r1, int r2);
-		const ROW get_row(long unsigned int r);
+
+		long unsigned height();
+		long unsigned width();
+
+		const ROW& get_row(long unsigned int r);
+		const ROW& operator[](long unsigned int r){ return get_row(r); }
 
 		void print();
 
