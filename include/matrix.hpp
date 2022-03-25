@@ -6,7 +6,8 @@
 
 using std::vector;
 
-typedef vector<int> ROW;
+typedef double ELEMENT;
+typedef vector<ELEMENT> ROW;
 typedef ROW COL;
 
 typedef vector<ROW> MATRIX;
@@ -26,7 +27,7 @@ class Matrix{
 		Matrix( const Matrix &matrix);
 
 		void swap_rows(int r1, int r2);
-		void mult_row(int r, int mult);
+		void mult_row(int r, ELEMENT mult);
 
 		int height() const;
 		int width() const;
@@ -40,7 +41,7 @@ class Matrix{
 		MATRIX m;
 };
 
-Matrix operator*(int x, Matrix m);
-Matrix operator*(Matrix m, int x);
+Matrix operator*(ELEMENT x, Matrix m);
+Matrix operator*(Matrix m, ELEMENT x);
 
 #endif

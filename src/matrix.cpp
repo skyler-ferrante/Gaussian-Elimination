@@ -20,14 +20,14 @@ Matrix::Matrix( std::ifstream& file ){
 
 	// Go through lines
 	while( std::getline(file, s) ){
-		vector<int> current_line;
+		ROW current_line;
 		
 		std::istringstream ss {s};
-		int n;
+		ELEMENT e;
 		
 		// Go through ints in line
-		while( ss >> n)
-			current_line.push_back(n);
+		while( ss >> e)
+			current_line.push_back(e);
 
 		m.push_back( current_line );
 	}
@@ -50,7 +50,7 @@ void Matrix::print(){
 	}
 }
 
-const ROW& Matrix::get_row( int r){
+const ROW& Matrix::get_row(int r){
 	row_index_assert(r, *this);
 	return m[r];
 }
@@ -63,14 +63,14 @@ const ROW& Matrix::get_row( int r){
 	return m[0].size();
 }
 
-void Matrix::mult_row( int r, int mult){
+void Matrix::mult_row(int r, ELEMENT mult){
 	row_index_assert(r, *this);
 
 	for(auto& e : m[r])
 		e *= mult;
 }
 
-Matrix operator* (int x, const Matrix m){
+Matrix operator* (ELEMENT x, const Matrix m){
 	Matrix result(m);
 	for( int i = 0; i < m.height(); i++){
 		result.mult_row(i, x);
@@ -79,6 +79,6 @@ Matrix operator* (int x, const Matrix m){
 	return result;
 }
 
-Matrix operator* (const Matrix m, int x){
+Matrix operator* (const Matrix m, ELEMENT x){
 	return x * m;
 }
