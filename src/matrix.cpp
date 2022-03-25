@@ -4,6 +4,7 @@
 #include<iostream>
 #include<fstream>
 #include<sstream>
+#include<cassert>
 
 using std::cout;
 using std::endl;
@@ -28,6 +29,10 @@ Matrix::Matrix( std::ifstream& file ){
 	}
 }
 
+Matrix::Matrix( const Matrix &matrix ){
+	m = matrix.m;
+}
+
 void Matrix::swap_rows( int r1, int r2 ){
 	std::swap( m[r1], m[r2] );
 }
@@ -39,4 +44,9 @@ void Matrix::print(){
 		}
 		cout << endl;
 	}
+}
+
+const ROW Matrix::get_row(long unsigned int r){
+	assert( r < m.size() && "Row index larger than amount of rows");
+	return m[r];
 }

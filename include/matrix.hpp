@@ -6,7 +6,10 @@
 
 using std::vector;
 
-typedef vector<vector<int>> MATRIX;
+typedef vector<int> ROW;
+typedef ROW COL;
+
+typedef vector<ROW> MATRIX;
 
 class Matrix{
 	public:
@@ -19,7 +22,11 @@ class Matrix{
 		// Already made MATRIX
 		Matrix( MATRIX &matrix );
 
+		// Copy constructor
+		Matrix( const Matrix &matrix);
+
 		void swap_rows(int r1, int r2);
+		const ROW get_row(long unsigned int r);
 
 		void print();
 

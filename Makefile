@@ -10,7 +10,12 @@ SRCS := main.cpp \
 
 OBJS := $(SRCS:%.cpp=obj/%.o)
 
-all: dirs $(PROJECT) $(HEADERS)
+all: dirs $(HEADERS) $(PROJECT)
+	@make -s -C ./tests
+
+# Does not include -s, useful for debugging problems with make
+tests:
+	@make -C ./tests
 
 dirs:
 	@mkdir -p obj
