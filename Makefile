@@ -31,5 +31,5 @@ $(OBJS): obj/%.o : src/%.cpp
 force: clean all;
 
 clean:
-	rm -f $(OBJS)
+	rm -f obj/*
 	rm -f $(PROJECT)
