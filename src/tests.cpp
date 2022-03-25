@@ -18,11 +18,13 @@
 using std::cout;
 using std::endl;
 
+void print_matrix(const char *step, Matrix &m1);
 void print_matrices(const char *step, Matrix &m1, Matrix &m2);
 
 std::pair<Matrix,Matrix> test_read_matrices();
 void test_swap_rows(Matrix &m1, Matrix &m2);
 void test_scalar_mult(Matrix &m1, Matrix &m2);
+void test_add_row_mult(Matrix &m1, ELEMENT mult);
 
 int main(){
 	auto matrices = test_read_matrices();
@@ -31,6 +33,7 @@ int main(){
 
 	test_swap_rows(m1, m2);
 	test_scalar_mult(m1, m2);
+	test_add_row_mult(m1, 2);
 }
 
 std::pair<Matrix,Matrix> test_read_matrices(){
@@ -93,6 +96,34 @@ void test_scalar_mult(Matrix &m1, Matrix &m2){
 
 	m2 = Matrix(m1);
 	print_matrices("RESET M2", m1, m2);
+}
+
+void test_add_row_mult(Matrix &m1, ELEMENT mult){
+	auto r0_before = m1[0];
+	auto r1_before = m1[1];
+
+	m1.add_row_mult(0, 1, mult);
+	print_matrix("ADD_ROW_MULT", m1);
+
+	auto r1_after = m1[1];
+
+	// r0 should not have changed
+	assert( r0_before == m1[0]);
+
+	for( unsigned int i = 0; i < r1_before.size(); i++){
+		assert( r1_after[i] == r1_before[i] + mult * r0_before[i] );
+	}
+
+	m1.add_row_mult(0, 1, -mult);
+	assert( r1_before == m1[1]);
+}
+
+void print_matrix(const char *step, Matrix &m1){
+	if( DEBUG ){
+		cout << "Step: " << step << endl;
+		m1.print();
+		cout << endl;
+	}
 }
 
 void print_matrices(const char *step, Matrix &m1, Matrix &m2){

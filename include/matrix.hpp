@@ -26,8 +26,14 @@ class Matrix{
 		// Copy constructor
 		Matrix( const Matrix &matrix);
 
+		// Swap r1 and r2
 		void swap_rows(int r1, int r2);
+
+		// Mult r by mult
 		void mult_row(int r, ELEMENT mult);
+
+		// Add r1*mult to r2
+		void add_row_mult(int r1, int r2, ELEMENT mult);
 
 		int height() const;
 		int width() const;

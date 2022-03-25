@@ -55,12 +55,21 @@ const ROW& Matrix::get_row(int r){
 	return m[r];
 }
 
- int Matrix::height() const{
+int Matrix::height() const{
 	return m.size();
 }
 
- int Matrix::width() const{
+int Matrix::width() const{
 	return m[0].size();
+}
+
+void Matrix::add_row_mult(int r1, int r2, ELEMENT mult){
+	row_index_assert(r1, *this);
+	row_index_assert(r2, *this);
+
+	for(int i = 0; i < width(); i++){
+		m[r2][i] += m[r1][i] * mult;
+	}
 }
 
 void Matrix::mult_row(int r, ELEMENT mult){
