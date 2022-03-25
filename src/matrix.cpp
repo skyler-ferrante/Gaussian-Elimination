@@ -11,6 +11,10 @@ using std::endl;
 using std::vector;
 using std::string;
 
+void row_index_assert( int r, const Matrix& m){
+	assert( r < m.height() && "Row index larger than amount of rows");
+}
+
 Matrix::Matrix( std::ifstream& file ){
 	string s;
 
@@ -33,7 +37,7 @@ Matrix::Matrix( const Matrix &matrix ){
 	m = matrix.m;
 }
 
-void Matrix::swap_rows( int r1, int r2 ){
+void Matrix::swap_rows(int r1,  int r2){
 	std::swap( m[r1], m[r2] );
 }
 
@@ -46,19 +50,35 @@ void Matrix::print(){
 	}
 }
 
-const ROW& Matrix::get_row(long unsigned int r){
-	assert( r < m.size() && "Row index larger than amount of rows");
+const ROW& Matrix::get_row( int r){
+	row_index_assert(r, *this);
 	return m[r];
 }
 
-//const ROW& Matrix::operator[](int r){
-//	return get_row(r);
-//}
-
-long unsigned int Matrix::height(){
+ int Matrix::height() const{
 	return m.size();
 }
 
-long unsigned int Matrix::width(){
+ int Matrix::width() const{
 	return m[0].size();
+}
+
+void Matrix::mult_row( int r, int mult){
+	row_index_assert(r, *this);
+
+	for(auto& e : m[r])
+		e *= mult;
+}
+
+Matrix operator* (int x, const Matrix m){
+	Matrix result(m);
+	for( int i = 0; i < m.height(); i++){
+		result.mult_row(i, x);
+	}
+
+	return result;
+}
+
+Matrix operator* (const Matrix m, int x){
+	return x * m;
 }
