@@ -6,14 +6,13 @@
 
 using std::vector;
 
-typedef double ELEMENT;
-typedef vector<ELEMENT> ROW;
-typedef ROW COL;
-
-typedef vector<ROW> MATRIX;
-
 class Matrix{
 	public:
+		typedef double ELEMENT;
+		typedef vector<ELEMENT> ROW;
+		typedef ROW COL;
+		typedef vector<ROW> MATRIX;
+
 		// No default constructor
 		Matrix() = delete;
 
@@ -49,7 +48,7 @@ class Matrix{
 		MATRIX m;
 };
 
-Matrix operator*(ELEMENT x, Matrix m);
-Matrix operator*(Matrix m, ELEMENT x);
+Matrix operator*(Matrix::ELEMENT x, Matrix m);
+Matrix operator*(Matrix m, Matrix::ELEMENT x);
 
 #endif

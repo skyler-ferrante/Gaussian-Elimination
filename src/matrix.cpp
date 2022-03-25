@@ -29,10 +29,10 @@ Matrix::Matrix( std::ifstream& file ){
 
 	// Go through lines
 	while( std::getline(file, s) ){
-		ROW current_line;
+		Matrix::ROW current_line;
 		
 		std::istringstream ss {s};
-		ELEMENT e;
+		Matrix::ELEMENT e;
 		
 		// Go through ints in line
 		while( ss >> e)
@@ -49,7 +49,7 @@ Matrix::Matrix( const Matrix &matrix ){
 	// Already know widths are equal
 }
 
-Matrix::Matrix( const MATRIX &matrix ){
+Matrix::Matrix( const Matrix::MATRIX &matrix ){
 	m = matrix;
 	equal_widths_assert(*this);
 }
@@ -67,7 +67,7 @@ void Matrix::print(){
 	}
 }
 
-const ROW& Matrix::get_row(int r) const{
+const Matrix::ROW& Matrix::get_row(int r) const{
 	row_index_assert(r, *this);
 	return m[r];
 }
@@ -80,7 +80,7 @@ int Matrix::width() const{
 	return m[0].size();
 }
 
-void Matrix::add_row_mult(int r1, int r2, ELEMENT mult){
+void Matrix::add_row_mult(int r1, int r2, Matrix::ELEMENT mult){
 	if( mult == 0 ){
 		return;
 	}
@@ -93,7 +93,7 @@ void Matrix::add_row_mult(int r1, int r2, ELEMENT mult){
 	}
 }
 
-void Matrix::mult_row(int r, ELEMENT mult){
+void Matrix::mult_row(int r, Matrix::ELEMENT mult){
 	row_index_assert(r, *this);
 	assert(mult != 0);
 
@@ -110,11 +110,11 @@ void Matrix::gaussian_elimination(){
 			if( m[i][k] != 0 ){
 				swap_rows(p, i);
 
-				ELEMENT a = 1/(m[p][k]);
+				Matrix::ELEMENT a = 1/(m[p][k]);
 				mult_row(p, a);
 				for(int q = 0; q < height(); q++){
 					if( q == p ) continue;
-					ELEMENT aq = m[q][k];
+					Matrix::ELEMENT aq = m[q][k];
 					add_row_mult(p, q, -aq);
 				}
 
@@ -125,7 +125,7 @@ void Matrix::gaussian_elimination(){
 	}
 }
 
-Matrix operator* (ELEMENT x, const Matrix m){
+Matrix operator* (Matrix::ELEMENT x, const Matrix m){
 	Matrix result(m);
 	for( int i = 0; i < m.height(); i++){
 		result.mult_row(i, x);
@@ -134,6 +134,6 @@ Matrix operator* (ELEMENT x, const Matrix m){
 	return result;
 }
 
-Matrix operator* (const Matrix m, ELEMENT x){
+Matrix operator* (const Matrix m, Matrix::ELEMENT x){
 	return x * m;
 }
