@@ -21,7 +21,7 @@ class Matrix{
 		Matrix( std::ifstream& file);
 
 		// Already made MATRIX
-		Matrix( MATRIX &matrix );
+		Matrix( const MATRIX &matrix );
 
 		// Copy constructor
 		Matrix( const Matrix &matrix);

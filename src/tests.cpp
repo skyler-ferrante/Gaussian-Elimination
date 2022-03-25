@@ -25,6 +25,7 @@ std::pair<Matrix,Matrix> test_read_matrices();
 void test_swap_rows(Matrix &m1, Matrix &m2);
 void test_scalar_mult(Matrix &m1, Matrix &m2);
 void test_add_row_mult(Matrix &m1, ELEMENT mult);
+void test_gaussian();
 
 int main(){
 	auto matrices = test_read_matrices();
@@ -34,6 +35,7 @@ int main(){
 	test_swap_rows(m1, m2);
 	test_scalar_mult(m1, m2);
 	test_add_row_mult(m1, 2);
+	test_gaussian();
 }
 
 std::pair<Matrix,Matrix> test_read_matrices(){
@@ -116,6 +118,30 @@ void test_add_row_mult(Matrix &m1, ELEMENT mult){
 
 	m1.add_row_mult(0, 1, -mult);
 	assert( r1_before == m1[1]);
+}
+
+void test_gaussian(){
+	MATRIX data = { 
+		{0, 2, 2, 0},
+		{0, -1, 0, 1},
+		{0, 1, 2, 1}
+	};
+	Matrix m(data);
+	print_matrix("BEFORE GAUSSIAN", m);
+
+	m.gaussian_elimation();
+	print_matrix("AFTER GAUSSIAN", m);
+	
+	MATRIX correct = {
+		{0, 1, 0, -1},
+		{0, 0, 1, 1},
+		{0, 0, 0, 0}
+	};
+	
+	// Check m == correct
+	for( int i = 0; i < m.height(); i++){
+		assert( m[i] == correct[i] );
+	}
 }
 
 void print_matrix(const char *step, Matrix &m1){
