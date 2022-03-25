@@ -40,8 +40,8 @@ class Matrix{
 		int height() const;
 		int width() const;
 
-		const ROW& get_row(int r);
-		const ROW& operator[](int r){ return get_row(r); }
+		const ROW& get_row(int r) const;
+		const ROW& operator[](int r) const { return get_row(r); }
 
 		void print();
 

@@ -15,6 +15,15 @@ void row_index_assert( int r, const Matrix& m){
 	assert( r < m.height() && "Row index larger than amount of rows");
 }
 
+void equal_widths_assert(const Matrix &m){
+	unsigned long int width = m[0].size();
+
+	// Check if the width of all rows is equal
+	for( int i = 1; i < m.height(); i++ ){
+		assert( width == m[i].size() && "Width of rows is not equal");
+	}
+}
+
 Matrix::Matrix( std::ifstream& file ){
 	string s;
 
@@ -30,15 +39,19 @@ Matrix::Matrix( std::ifstream& file ){
 			current_line.push_back(e);
 
 		m.push_back( current_line );
+
+		equal_widths_assert(*this);
 	}
 }
 
 Matrix::Matrix( const Matrix &matrix ){
 	m = matrix.m;
+	// Already know widths are equal
 }
 
 Matrix::Matrix( const MATRIX &matrix ){
 	m = matrix;
+	equal_widths_assert(*this);
 }
 
 void Matrix::swap_rows(int r1,  int r2){
@@ -54,7 +67,7 @@ void Matrix::print(){
 	}
 }
 
-const ROW& Matrix::get_row(int r){
+const ROW& Matrix::get_row(int r) const{
 	row_index_assert(r, *this);
 	return m[r];
 }
