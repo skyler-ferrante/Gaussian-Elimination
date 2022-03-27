@@ -18,10 +18,13 @@ int main(int argc, char** argv){
 		return 1;
 	}
 
+	cout << "Solving from: " << argv[1] << endl;
 	Matrix m(file);
 	m.print();
 	cout << endl;
 
+	cout << "Solved: " << argv[1] << endl;
 	m.gaussian_elimination();
 	m.print();
+	cout << endl;
 }

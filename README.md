@@ -10,7 +10,7 @@ Run with:
 
     ./run_tests
     
-    ./linear data/fourth
+    for filename in data/*; do  ./linear $filename; done
 
 Precision can be changed by changing type of ELEMENT in matrix.hpp, e.g.
 
