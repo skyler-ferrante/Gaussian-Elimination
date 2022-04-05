@@ -61,6 +61,11 @@ void Matrix::swap_rows(int r1,  int r2){
 void Matrix::print(){
 	for( auto r : m ){
 		for( auto e : r ){
+			// Remove negative zeros from output
+			if( e == 0){
+				e = 0;
+			}
+
 			cout << e << " ";
 		}
 		cout << endl;
